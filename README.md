@@ -7,17 +7,18 @@
 ```
 docs/
 ├── README.md                  # 本文件：仓库总览
-├── java-learning/             # 35 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战）
+├── java-learning/             # 39 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战）
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
-└── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
+├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
+└── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
 ```
 
 ## 一、学习文档（java-learning/）
 
-35 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
+39 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
 Spring Boot、缓存、安全、设计模式、微服务、消息队列、容器化、搜索、
 CI/CD、JVM 内功、MySQL 调优、Netty、Kafka、Redis 深度、微服务治理、
-Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker 三大专项精讲等。
+Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker/Kong/Nacos/数据迁移/建表脚本 七大专项精讲等。
 详见 [`java-learning/README.md`](./java-learning/README.md)。
 
 ## 二、实战项目
@@ -26,6 +27,7 @@ Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker 三大专项精讲等
 | --- | --- | --- | --- |
 | **mall-boot** | Spring Boot 3.2 单体商城：JWT 登录、缓存治理、防超卖下单、Redis 对接验证、SkyWalking 探针、Docker/K8s/Helm 部署 | 第 31 章 | [mall-boot/README.md](./mall-boot/README.md) |
 | **mall-cloud** | Spring Cloud 微服务商城：Nacos + Gateway + Feign + Seata 分布式事务 + Sentinel 限流（规则配置中心化）+ SkyWalking + K8s/Helm 部署 | 第 30、32 章 | [mall-cloud/README.md](./mall-cloud/README.md) |
+| **migration-demo** | 数据迁移实操：Spring Boot + Flyway 自动执行 V1~V5 版本化迁移脚本（建表/加字段/回填数据/索引），含 docker-compose 一键拉起 MySQL | 第 38 章 | [migration-demo/README.md](./migration-demo/README.md) |
 
 ### 两个项目的关系（学习路径）
 

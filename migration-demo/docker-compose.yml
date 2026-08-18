@@ -1,0 +1,27 @@
+# 一键启动 MySQL（第 38 章配套实操环境）
+# 用法：docker compose up -d
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: migration-demo-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: migration_demo   # 自动创建数据库
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  mysql_data:
