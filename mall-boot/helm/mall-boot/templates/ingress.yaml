@@ -1,0 +1,22 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "mall-boot.fullname" . }}
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "mall-boot.labels" . | nindent 4 }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "mall-boot.fullname" . }}
+                port:
+                  number: {{ .Values.app.port }}
+{{- end }}

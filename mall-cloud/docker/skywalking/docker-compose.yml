@@ -1,0 +1,30 @@
+# =============================================================
+# SkyWalking 后端与 UI（演示环境，存储用 H2）
+# 启动：docker compose -f docker/skywalking/docker-compose.yml up -d
+# 访问：UI http://localhost:8086    gRPC 上报端口 11800
+# 关闭：docker compose -f docker/skywalking/docker-compose.yml down
+# 生产建议：SW_STORAGE 切换为 elasticsearch/mysql，并配置持久化
+# =============================================================
+services:
+  oap:
+    image: apache/skywalking-oap-server:9.7.0
+    container_name: mall-skywalking-oap
+    environment:
+      SW_STORAGE: h2                # 演示用文件型 H2；生产换 elasticsearch
+      TZ: Asia/Shanghai
+    ports:
+      - "11800:11800"               # 探针 gRPC 上报端口
+      - "12800:12800"               # UI 查询 HTTP 端口
+    restart: unless-stopped
+
+  ui:
+    image: apache/skywalking-ui:9.7.0
+    container_name: mall-skywalking-ui
+    environment:
+      SW_OAP_ADDRESS: http://oap:12800
+      TZ: Asia/Shanghai
+    ports:
+      - "8086:8080"                 # http://localhost:8086
+    depends_on:
+      - oap
+    restart: unless-stopped

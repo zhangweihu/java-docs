@@ -1,0 +1,55 @@
+# Redis 7：单副本 Deployment + PVC（演示环境；生产建议哨兵/集群）
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-redis
+  namespace: mall-boot
+spec:
+  selector:
+    app: mall-redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-redis
+  namespace: mall-boot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-redis
+  template:
+    metadata:
+      labels:
+        app: mall-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          args: ["redis-server", "--appendonly", "yes"]
+          ports:
+            - containerPort: 6379
+          resources:
+            requests: { cpu: "100m", memory: "128Mi" }
+            limits:   { cpu: "500m", memory: "256Mi" }
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: mall-redis-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mall-redis-pvc
+  namespace: mall-boot
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 1Gi

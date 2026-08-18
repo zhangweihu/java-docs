@@ -1,0 +1,86 @@
+# =============================================================
+# mall-cloud Helm Chart 默认配置
+# 覆盖方式：helm install mall-cloud . --set global.image.tag=1.0.1
+#           或 -f my-values.yaml
+# =============================================================
+
+global:
+  namespace: mall-cloud        # 命名空间（不存在时 helm 自动创建）
+  image:
+    tag: "1.0.0"               # 服务镜像统一版本（构建见 docker/service/Dockerfile）
+    pullPolicy: IfNotPresent
+
+# 敏感信息（演示默认值！生产务必覆盖）
+secrets:
+  dbUsername: root
+  dbPassword: root123
+  mysqlRootPassword: root123
+
+# ============ 基础设施（均可独立开关，外部已有时关闭并改共享配置） ============
+infra:
+  mysql:
+    enabled: true
+    image: mysql:8.0
+    storage: 5Gi
+  redis:
+    enabled: true
+    image: redis:7-alpine
+    storage: 1Gi
+  nacos:
+    enabled: true
+    image: nacos/nacos-server:v2.3.2
+    storage: 2Gi
+  seata:
+    enabled: true
+    image: seataio/seata-server:1.8.0
+  sentinel:
+    enabled: true
+    image: bladex/sentinel-dashboard:1.8.6
+  skywalking:
+    enabled: true
+    image:
+      oap: apache/skywalking-oap-server:9.7.0
+      ui: apache/skywalking-ui:9.7.0
+
+# ============ 业务服务（通用模板渲染，见 templates/service.yaml） ============
+services:
+  gateway:
+    enabled: true
+    name: gateway
+    image: mall-gateway
+    port: 8080
+    replicas: 2
+    dbName: ""                # 网关无数据库
+    extraEnv: []
+  user:
+    enabled: true
+    name: user
+    image: mall-user
+    port: 8081
+    replicas: 2
+    dbName: mall_user
+    extraEnv: []
+  product:
+    enabled: true
+    name: product
+    image: mall-product
+    port: 8082
+    replicas: 2
+    dbName: mall_product
+    extraEnv: []
+  order:
+    enabled: true
+    name: order
+    image: mall-order
+    port: 8083
+    replicas: 2
+    dbName: mall_order
+    extraEnv:
+      - name: SPRING_CLOUD_ALIBABA_SEATA_TX_SERVICE_GROUP
+        value: mall_tx_group
+
+# ============ Ingress（唯一入口 -> 网关） ============
+ingress:
+  enabled: true
+  className: nginx
+  host: mall.local

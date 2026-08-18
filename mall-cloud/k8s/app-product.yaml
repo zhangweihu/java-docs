@@ -1,0 +1,53 @@
+# 商品服务（8082）：乐观扣库存 + /internal/** 契约接口
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-product
+  namespace: mall-cloud
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mall-product
+  template:
+    metadata:
+      labels:
+        app: mall-product
+    spec:
+      containers:
+        - name: product
+          image: mall-product:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+              name: http
+          envFrom:
+            - configMapRef:
+                name: mall-cloud-config
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mall-mysql:3306/mall_product?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false"
+          resources:
+            requests: { cpu: "250m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+          readinessProbe:
+            tcpSocket: { port: 8082 }
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket: { port: 8082 }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-product-svc
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-product
+  ports:
+    - port: 8082
+      targetPort: 8082
+  type: ClusterIP

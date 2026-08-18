@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mall-cloud
+description: mall-cloud 微服务商城 Helm Chart（基础设施 + 4 服务 + Ingress）
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

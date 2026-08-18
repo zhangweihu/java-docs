@@ -1,0 +1,65 @@
+# MySQL 8.0：StatefulSet + PVC（本地实验环境单副本）
+# 初始化 SQL 由 ConfigMap mall-init-sql 提供（见 README 中的 kubectl create configmap 命令）
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-mysql
+  namespace: mall-boot
+spec:
+  selector:
+    app: mall-mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+  clusterIP: None   # Headless，配合 StatefulSet
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mall-mysql
+  namespace: mall-boot
+spec:
+  serviceName: mall-mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-mysql
+  template:
+    metadata:
+      labels:
+        app: mall-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mall-boot-secret
+                  key: mysql-root-password
+            - name: MYSQL_DATABASE
+              value: mall
+          ports:
+            - containerPort: 3306
+          resources:
+            requests: { cpu: "500m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+            - name: init-sql
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: init-sql
+          configMap:
+            name: mall-init-sql
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi

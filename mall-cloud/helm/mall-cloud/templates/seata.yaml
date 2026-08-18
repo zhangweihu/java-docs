@@ -1,0 +1,91 @@
+{{- if .Values.infra.seata.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-seata-conf
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "mall-cloud.labels" . | nindent 4 }}
+data:
+  registry.conf: |
+    registry {
+      type = "nacos"
+      nacos {
+        application = "seata-server"
+        serverAddr = "{{ .Release.Name }}-nacos:8848"
+        group = "SEATA_GROUP"
+        namespace = ""
+      }
+    }
+    config {
+      type = "file"
+    }
+  file.conf: |
+    service {
+      vgroupMapping.mall_tx_group = "default"
+    }
+    store {
+      mode = "file"
+    }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-seata
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "mall-cloud.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Release.Name }}-seata
+  ports:
+    - port: 8091
+      targetPort: 8091
+      protocol: TCP
+      name: seata
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-seata
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "mall-cloud.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-seata
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-seata
+    spec:
+      containers:
+        - name: seata-server
+          image: {{ .Values.infra.seata.image }}
+          ports:
+            - containerPort: 8091
+              name: seata
+          env:
+            - name: SEATA_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: TZ
+              value: Asia/Shanghai
+          volumeMounts:
+            - name: conf
+              mountPath: /seata-server/resources/registry.conf
+              subPath: registry.conf
+              readOnly: true
+            - name: conf
+              mountPath: /seata-server/resources/file.conf
+              subPath: file.conf
+              readOnly: true
+      volumes:
+        - name: conf
+          configMap:
+            name: {{ .Release.Name }}-seata-conf
+{{- end }}

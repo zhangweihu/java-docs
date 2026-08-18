@@ -1,0 +1,56 @@
+# 订单服务（8083）：Feign 跨服务调用 + Seata 全局事务 + Sentinel 限流
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-order
+  namespace: mall-cloud
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mall-order
+  template:
+    metadata:
+      labels:
+        app: mall-order
+    spec:
+      containers:
+        - name: order
+          image: mall-order:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8083
+              name: http
+          envFrom:
+            - configMapRef:
+                name: mall-cloud-config
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mall-mysql:3306/mall_order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false"
+            # Seata 事务分组（与 infra-seata.yaml 中 vgroupMapping 对应）
+            - name: SPRING_CLOUD_ALIBABA_SEATA_TX_SERVICE_GROUP
+              value: mall_tx_group
+          resources:
+            requests: { cpu: "250m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+          readinessProbe:
+            tcpSocket: { port: 8083 }
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket: { port: 8083 }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-order-svc
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-order
+  ports:
+    - port: 8083
+      targetPort: 8083
+  type: ClusterIP

@@ -1,0 +1,19 @@
+# 各微服务共享环境变量（envFrom 整体注入 Deployment，Spring 宽松绑定自动映射）
+# 每个服务独有的 SPRING_DATASOURCE_URL（库名不同）在各 app-*.yaml 的 env 中单独覆盖
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mall-cloud-config
+  namespace: mall-cloud
+data:
+  # Nacos 注册/配置中心
+  NACOS_ADDR: "mall-nacos:8848"
+  # Sentinel 控制台
+  SENTINEL_DASHBOARD: "mall-sentinel:8858"
+  # SkyWalking OAP（gRPC 上报）
+  SW_AGENT_COLLECTOR_BACKEND_SERVICES: "mall-oap:11800"
+  # 数据源公共项
+  SPRING_DATASOURCE_USERNAME: "root"
+  SPRING_DATA_REDIS_HOST: "mall-redis"
+  SPRING_DATA_REDIS_PORT: "6379"
+  TZ: "Asia/Shanghai"

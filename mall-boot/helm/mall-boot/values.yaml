@@ -1,0 +1,61 @@
+# =============================================================
+# mall-boot Helm Chart 默认配置
+# 覆盖方式：helm install mall-boot . --set image.tag=1.0.1
+#           或 -f my-values.yaml
+# =============================================================
+
+global:
+  namespace: mall-boot        # 命名空间（不存在时 helm 自动创建）
+
+image:
+  repository: mall-boot       # 构建：docker build -f docker/Dockerfile -t mall-boot:1.0.0 .
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+app:
+  name: mall-boot
+  replicas: 2
+  port: 8080
+  profile: prod               # 激活 application-prod.yml（敏感项全部走环境变量）
+  jwtExpireHours: 24
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: "1"
+      memory: 1Gi
+
+# 数据库 / 缓存连接（默认指向本 Chart 创建的内置基础设施；host 支持模板语法）
+database:
+  host: "{{ .Release.Name }}-mysql"
+  port: "3306"
+  name: mall
+  username: root
+
+redis:
+  host: "{{ .Release.Name }}-redis"
+  port: "6379"
+  password: ""
+
+# 敏感信息（演示默认值！生产务必 --set secrets.xxx= 覆盖）
+secrets:
+  dbPassword: root123
+  mysqlRootPassword: root123   # 内置 MySQL 的 root 密码
+  jwtSecret: mall-boot-jwt-secret-0123456789   # 必须 >= 32 字节
+
+# 基础设施（按需开启；若已有外部 MySQL/Redis，可全部关闭并覆盖 database/redis 的连接配置）
+mysql:
+  enabled: true
+  image: mysql:8.0
+  storage: 5Gi
+
+redis:
+  enabled: true
+  image: redis:7-alpine
+  storage: 1Gi
+
+ingress:
+  enabled: true
+  className: nginx
+  host: mall.local

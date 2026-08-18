@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mall-boot
+description: mall-boot 单体商城 Helm Chart（应用 + 可选 MySQL/Redis 基础设施）
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

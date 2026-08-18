@@ -1,0 +1,5 @@
+# mall-boot 专用命名空间，隔离资源与云上其他应用
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mall-boot

@@ -1,0 +1,22 @@
+# Ingress：集群外访问入口（需已安装 ingress-nginx）
+# 本地测试：配置 hosts 映射 mall.local -> 127.0.0.1 后访问 http://mall.local/api/xxx
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mall-boot-ingress
+  namespace: mall-boot
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mall.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mall-boot-svc
+                port:
+                  number: 8080

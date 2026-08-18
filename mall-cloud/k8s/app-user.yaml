@@ -1,0 +1,58 @@
+# 用户服务（8081）
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-user
+  namespace: mall-cloud
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mall-user
+  template:
+    metadata:
+      labels:
+        app: mall-user
+    spec:
+      containers:
+        - name: user
+          image: mall-user:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8081
+              name: http
+          envFrom:
+            - configMapRef:
+                name: mall-cloud-config
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mall-mysql:3306/mall_user?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false"
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mall-cloud-secret
+                  key: nacos-auth-password
+          resources:
+            requests: { cpu: "250m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+          readinessProbe:
+            tcpSocket: { port: 8081 }
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket: { port: 8081 }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-user-svc
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-user
+  ports:
+    - port: 8081
+      targetPort: 8081
+  type: ClusterIP

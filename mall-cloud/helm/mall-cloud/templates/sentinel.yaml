@@ -1,0 +1,48 @@
+{{- if .Values.infra.sentinel.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-sentinel
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "mall-cloud.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ .Release.Name }}-sentinel
+  ports:
+    - port: 8858
+      targetPort: 8858
+      protocol: TCP
+      name: dashboard
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-sentinel
+  namespace: {{ .Values.global.namespace }}
+  labels:
+    {{- include "mall-cloud.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-sentinel
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-sentinel
+    spec:
+      containers:
+        - name: sentinel-dashboard
+          image: {{ .Values.infra.sentinel.image }}
+          ports:
+            - containerPort: 8858
+              name: dashboard
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8858
+            initialDelaySeconds: 30
+            periodSeconds: 10
+{{- end }}

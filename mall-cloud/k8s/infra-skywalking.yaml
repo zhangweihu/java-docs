@@ -1,0 +1,83 @@
+# SkyWalking OAP + UI（H2 存储演示，生产换 elasticsearch 并挂 PVC）
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-oap
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-oap
+  ports:
+    - name: grpc
+      port: 11800
+      targetPort: 11800
+    - name: http
+      port: 12800
+      targetPort: 12800
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-oap
+  namespace: mall-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-oap
+  template:
+    metadata:
+      labels:
+        app: mall-oap
+    spec:
+      containers:
+        - name: oap
+          image: apache/skywalking-oap-server:9.7.0
+          env:
+            - name: SW_STORAGE
+              value: h2
+            - name: TZ
+              value: Asia/Shanghai
+          ports:
+            - containerPort: 11800
+              name: grpc
+            - containerPort: 12800
+              name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-skywalking-ui
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-skywalking-ui
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-skywalking-ui
+  namespace: mall-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-skywalking-ui
+  template:
+    metadata:
+      labels:
+        app: mall-skywalking-ui
+    spec:
+      containers:
+        - name: ui
+          image: apache/skywalking-ui:9.7.0
+          env:
+            - name: SW_OAP_ADDRESS
+              value: http://mall-oap:12800
+            - name: TZ
+              value: Asia/Shanghai
+          ports:
+            - containerPort: 8080

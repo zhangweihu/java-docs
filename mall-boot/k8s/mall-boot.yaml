@@ -1,0 +1,64 @@
+# mall-boot 应用：Deployment + Service（镜像含 SkyWalking 探针，见 docker/Dockerfile）
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-boot
+  namespace: mall-boot
+spec:
+  replicas: 2   # 演示水平扩容：kubectl scale deployment mall-boot --replicas=3 -n mall-boot
+  selector:
+    matchLabels:
+      app: mall-boot
+  template:
+    metadata:
+      labels:
+        app: mall-boot
+    spec:
+      containers:
+        - name: mall-boot
+          image: mall-boot:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          envFrom:
+            - configMapRef:
+                name: mall-boot-config
+          env:
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mall-boot-secret
+                  key: mysql-root-password
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mall-boot-secret
+                  key: jwt-secret
+            # SkyWalking：OAP 地址指向 K8s 集群内的 OAP Service（未部署 OAP 时保留默认即可）
+            - name: SW_AGENT_COLLECTOR_BACKEND_SERVICES
+              value: mall-oap:11800
+          resources:
+            requests: { cpu: "250m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+          readinessProbe:
+            httpGet: { path: /api/product/list, port: http }
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /api/product/list, port: http }
+            initialDelaySeconds: 60
+            periodSeconds: 15
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-boot-svc
+  namespace: mall-boot
+spec:
+  selector:
+    app: mall-boot
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP

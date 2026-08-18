@@ -1,0 +1,63 @@
+# 订单服务配置
+server:
+  port: 8083
+
+spring:
+  application:
+    name: mall-order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/mall_order?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDR:localhost:8848}
+      config:
+        server-addr: ${NACOS_ADDR:localhost:8848}
+        file-extension: yaml
+    sentinel:
+      transport:
+        dashboard: ${SENTINEL_DASHBOARD:localhost:8858}
+        port: ${SENTINEL_PORT:8719}
+      eager: true
+      # 规则配置中心化：从 Nacos 拉取流控规则（dataId: mall-order-flow-rules，group: SENTINEL_GROUP），
+      # Nacos 控制台 / init-sentinel-rules 脚本修改后实时推送，无需重启应用
+      datasource:
+        flow:
+          nacos:
+            server-addr: ${NACOS_ADDR:localhost:8848}
+            data-id: mall-order-flow-rules
+            group-id: SENTINEL_GROUP
+            rule-type: flow
+    config:
+      import: optional:nacos:mall-order.yaml
+
+# Seata 配置：事务分组名与 Nacos 中配置保持一致（seata-server 需先启动）
+seata:
+  enabled: true
+  application-id: mall-order
+  tx-service-group: mall_tx_group
+  registry:
+    type: nacos
+    nacos:
+      server-addr: ${NACOS_ADDR:localhost:8848}
+      namespace: ""
+      group: SEATA_GROUP
+      application: seata-server
+  config:
+    type: nacos
+    nacos:
+      server-addr: ${NACOS_ADDR:localhost:8848}
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0

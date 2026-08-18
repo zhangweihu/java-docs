@@ -1,0 +1,36 @@
+# 主配置：公共项 + 激活环境。dev/prod 差异见对应 profile 文件。
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mall-boot
+  profiles:
+    active: dev            # 切换环境：java -jar mall.jar --spring.profiles.active=prod
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# 业务自定义配置
+mall:
+  jwt:
+    secret: mall-boot-jwt-secret-key-please-change-in-production-0123456789
+    expire-hours: 24
+  file:
+    upload-dir: ./upload        # 文件上传目录（演示用）
+
+# MyBatis-Plus
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   # 控制台打印 SQL（生产环境建议关闭）
+  global-config:
+    db-config:
+      logic-delete-field: deleted    # 逻辑删除字段
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# SpringDoc 接口文档
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

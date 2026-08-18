@@ -1,0 +1,70 @@
+# Nacos Server 2.x：单机模式（standalone，内嵌 derby）+ PVC
+# 生产建议 3 节点集群 + MySQL 存储（见 Nacos 官方 helm chart）
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-nacos
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-nacos
+  ports:
+    - name: http
+      port: 8848
+      targetPort: 8848
+    - name: grpc
+      port: 9848
+      targetPort: 9848
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mall-nacos
+  namespace: mall-cloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-nacos
+  template:
+    metadata:
+      labels:
+        app: mall-nacos
+    spec:
+      containers:
+        - name: nacos
+          image: nacos/nacos-server:v2.3.2
+          env:
+            - name: MODE
+              value: standalone
+            - name: NACOS_AUTH_ENABLE
+              value: "false"
+            - name: JVM_XMS
+              value: 256m
+            - name: JVM_XMX
+              value: 256m
+            - name: JVM_XMN
+              value: 128m
+          ports:
+            - containerPort: 8848
+              name: http
+            - containerPort: 9848
+              name: grpc
+          volumeMounts:
+            - name: data
+              mountPath: /home/nacos/data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: mall-nacos-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mall-nacos-pvc
+  namespace: mall-cloud
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 2Gi

@@ -1,0 +1,20 @@
+# 入口：所有请求先过网关（鉴权/路由/限流），再转发下游服务
+# 本地测试：hosts 映射 mall.local -> 127.0.0.1，访问 http://mall.local/order/sentinel/demo 等
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mall-cloud-ingress
+  namespace: mall-cloud
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mall.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: mall-gateway-svc
+                port:
+                  number: 8080

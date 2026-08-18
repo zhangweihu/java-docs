@@ -1,0 +1,22 @@
+[
+  {
+    "resource": "order-route",
+    "resourceMode": 0,
+    "grade": 1,
+    "count": 5,
+    "intervalSec": 1,
+    "controlBehavior": 0,
+    "burst": 0,
+    "maxQueueingTimeoutMs": 500
+  },
+  {
+    "resource": "mall-product-api",
+    "resourceMode": 1,
+    "grade": 1,
+    "count": 20,
+    "intervalSec": 1,
+    "controlBehavior": 0,
+    "burst": 0,
+    "maxQueueingTimeoutMs": 500
+  }
+]

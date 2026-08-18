@@ -1,0 +1,35 @@
+# =============================================================
+# mall-boot + SkyWalking 可选编排（覆盖文件）
+#
+# 用法：docker compose -f docker/docker-compose.yml \
+#            -f docker/docker-compose.skywalking.yml up -d --build
+# 说明：启动 OAP/UI，并把 mall-boot 的探针上报地址指向 OAP 容器
+# =============================================================
+services:
+  # 覆盖基础文件中的 mall-boot 配置：探针上报地址指向 OAP
+  mall-boot:
+    environment:
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: oap:11800
+
+  oap:
+    image: apache/skywalking-oap-server:9.7.0
+    container_name: mall-oap
+    environment:
+      SW_STORAGE: h2
+      TZ: Asia/Shanghai
+    ports:
+      - "11800:11800"
+      - "12800:12800"
+    restart: unless-stopped
+
+  ui:
+    image: apache/skywalking-ui:9.7.0
+    container_name: mall-skywalking-ui
+    environment:
+      SW_OAP_ADDRESS: http://oap:12800
+      TZ: Asia/Shanghai
+    ports:
+      - "8086:8080"
+    depends_on:
+      - oap
+    restart: unless-stopped

@@ -1,0 +1,63 @@
+# MySQL 8.0：微服务共用一个实例，三库隔离（mall_user / mall_product / mall_order）
+# 建库脚本由 ConfigMap mall-init-sql 挂载进 /docker-entrypoint-initdb.d（见 README）
+apiVersion: v1
+kind: Service
+metadata:
+  name: mall-mysql
+  namespace: mall-cloud
+spec:
+  selector:
+    app: mall-mysql
+  ports:
+    - port: 3306
+      targetPort: 3306
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mall-mysql
+  namespace: mall-cloud
+spec:
+  serviceName: mall-mysql
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mall-mysql
+  template:
+    metadata:
+      labels:
+        app: mall-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.0
+          args: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mall-cloud-secret
+                  key: mysql-root-password
+          ports:
+            - containerPort: 3306
+          resources:
+            requests: { cpu: "500m", memory: "512Mi" }
+            limits:   { cpu: "1",    memory: "1Gi" }
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/mysql
+            - name: init-sql
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: init-sql
+          configMap:
+            name: mall-init-sql
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi

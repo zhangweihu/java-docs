@@ -1,0 +1,18 @@
+mall-boot 已部署到命名空间 {{ .Values.global.namespace }}！
+
+访问方式：
+  1. Ingress : http://{{ .Values.ingress.host }}   （记得在 /etc/hosts 添加解析）
+  2. NodePort: kubectl -n {{ .Values.global.namespace }} port-forward svc/{{ include "mall-boot.fullname" . }} 8080:8080
+
+验证：
+  curl http://{{ .Values.ingress.host }}/api/product/list
+  curl http://{{ .Values.ingress.host }}/api/redis/verify      # Redis 实际对接自检
+
+内置基础设施（{{ if .Values.mysql.enabled }}已启用{{ else }}已禁用{{ end }}）：
+  MySQL: {{ tpl .Values.database.host $ }}:{{ .Values.database.port }}   root / {{ .Values.secrets.mysqlRootPassword }}
+  Redis: {{ tpl .Values.redis.host $ }}:{{ .Values.redis.port }}
+
+运维：
+  helm -n {{ .Values.global.namespace }} list
+  helm -n {{ .Values.global.namespace }} upgrade {{ .Release.Name }} .
+  helm -n {{ .Values.global.namespace }} uninstall {{ .Release.Name }}

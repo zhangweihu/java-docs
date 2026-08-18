@@ -1,0 +1,65 @@
+# =============================================================
+# mall-boot 一键部署：MySQL + Redis + 应用
+# 使用：cd docker && docker compose up -d
+# 应用先启动会等待数据库就绪（depends_on + healthcheck）
+# =============================================================
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mall-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: mall
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mall-mysql-data:/var/lib/mysql
+      # 首次启动自动执行初始化脚本
+      - ../sql/mall.sql:/docker-entrypoint-initdb.d/mall.sql:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7-alpine
+    container_name: mall-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - mall-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  mall-boot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mall-boot
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_HOST: mysql
+      DB_USERNAME: root
+      DB_PASSWORD: root123
+      REDIS_HOST: redis
+      JWT_SECRET: mall-boot-jwt-secret-key-please-change-in-production-0123456789
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  mall-mysql-data:
+  mall-redis-data:
