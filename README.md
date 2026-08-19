@@ -8,18 +8,31 @@
 docs/
 ├── README.md                  # 本文件：仓库总览
 ├── java-learning/             # 39 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战）
+├── python-learning/           # Python 体系化学习文档（基础 -> 进阶 -> 并发 -> 网络/Web -> 数据分析，与 Java 体系并列）
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
 ├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
 └── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
 ```
 
-## 一、学习文档（java-learning/）
+## 一、学习文档
+
+### 1. Java 体系（java-learning/）
 
 39 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
 Spring Boot、缓存、安全、设计模式、微服务、消息队列、容器化、搜索、
 CI/CD、JVM 内功、MySQL 调优、Netty、Kafka、Redis 深度、微服务治理、
 Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker/Kong/Nacos/数据迁移/建表脚本 七大专项精讲等。
 详见 [`java-learning/README.md`](./java-learning/README.md)。
+
+### 2. Python 体系（python-learning/）
+
+面向已有 Java 基础的读者，全程穿插 Python vs Java 对比，**9 章体系 + 7 章 AI/数据扩展已全部完成**：
+基础与核心语法、进阶语法（迭代器/装饰器/元类/类型注解）、文件与标准库、
+并发与异步（GIL/asyncio）、网络爬虫、FastAPI Web 开发、数据分析（NumPy/Pandas/Matplotlib）、
+自动化脚本与工程化、工程化与测试（pytest/打包/CI/CD）、
+AI Agent 全栈（OpenAI SDK Agent 开发、RAG 与向量数据库、LangGraph 编排、MCP 工具接入、
+机器学习 scikit-learn、多模态语音 Agent、Agent 评测体系）。
+详见 [`python-learning/README.md`](./python-learning/README.md)。
 
 ## 二、实战项目
 
