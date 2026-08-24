@@ -192,4 +192,4 @@ public void createOrder(Order order, List<OrderItem> items) {
 - **选型**（60.6）：单机 → 读写分离 → 分库分表 / NewSQL / 云数据库，复杂度管理优先；
 - **收官**（60.7）：57~60 数据专题形成"拆分 → 高可用 → 迁移 → 替代"完整闭环。
 
-至此，第 60 章分布式数据库与 NewSQL 学习完成，**数据专题（57~60）全部收官**，Java 学习体系扩展到 60 章。返回：[README.md](./README.md)
+至此，第 60 章分布式数据库与 NewSQL 学习完成，数据专题（57~60）收官。下一章 [61-Flink流式计算.md](./61-Flink流式计算.md)（实时计算引擎）｜ 返回：[README.md](./README.md)
