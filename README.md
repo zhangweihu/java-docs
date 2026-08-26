@@ -7,7 +7,7 @@
 ```
 docs/
 ├── README.md                  # 本文件：仓库总览
-├── java-learning/             # 69 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题收官）
+├── java-learning/             # 70 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题 -> DDD×报表工具收官）
 ├── python-learning/           # Python 体系化学习文档（基础 -> 进阶 -> 并发 -> 网络/Web -> 数据分析，与 Java 体系并列）
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
 ├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
@@ -18,7 +18,7 @@ docs/
 
 ### 1. Java 体系（java-learning/）
 
-69 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
+70 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
 Spring Boot、缓存、安全、设计模式、微服务、消息队列、容器化、搜索、
 CI/CD、JVM 内功、MySQL 调优、Netty、Kafka、Redis 深度、微服务治理、
 Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker/Kong/Nacos/数据迁移/建表脚本 七大专项精讲、
@@ -29,9 +29,10 @@ CQRS 与事件溯源、事件风暴工作坊、Axon Framework、分布式事务�
 DevOps/GitOps、云原生安全、更多行业案例（教育/医疗/政务/制造/旅游/SaaS）、K8s Operator 开发，
 数据专题四连（分库分表与 ShardingSphere 深度实战、数据库高可用与容灾、
 大规模数据迁移与不停机扩容、分布式数据库与 NewSQL），
-最终以大数据专题九连收官：Flink 流式计算、Flink 实时数仓分层实战、Spark 体系、
+大数据专题九连：Flink 流式计算、Flink 实时数仓分层实战、Spark 体系、
 ClickHouse/Doris 分析引擎、大数据平台全景、Hive 深度实战、数据湖 Iceberg 实战、
-机器学习平台、BI 可视化实践等。
+机器学习平台、BI 可视化实践，
+最终以 DDD×企业报表工具收官：DataMax 报表开发与 DDD 集成实战（限界上下文/读模型/口径铁律/行级权限）等。
 详见 [`java-learning/README.md`](./java-learning/README.md)。
 
 ### 2. Python 体系（python-learning/）
