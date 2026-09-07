@@ -1,0 +1,8 @@
+# 对应学习文档：rust-learning/01-Rust环境与基础语法.md
+# 概念：变量/类型/函数/表达式、流程控制、match 与 Result、命令行参数
+[package]
+name = "calculator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

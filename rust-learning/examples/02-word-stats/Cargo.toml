@@ -1,0 +1,8 @@
+# 对应学习文档：rust-learning/02-所有权借用与生命周期.md
+# 概念：&str/String 借用、HashMap、迭代器、跨函数返回拥有数据
+[package]
+name = "word-stats"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

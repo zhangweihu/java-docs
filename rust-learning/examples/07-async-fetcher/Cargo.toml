@@ -1,0 +1,13 @@
+# 对应学习文档：rust-learning/07-异步Rust与Tokio.md
+# 概念：async/await、#[tokio::main]、spawn + join_all、timeout 与取消
+# 运行：默认本地演示（无需网络）；加 --real 参数走 reqwest 真实并发抓取
+[package]
+name = "async-fetcher"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", features = ["json"] }
+anyhow = "1"
+futures = "0.3"

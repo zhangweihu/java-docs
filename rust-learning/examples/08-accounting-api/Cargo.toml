@@ -1,0 +1,18 @@
+# 对应学习文档：rust-learning/08-Axum-Web与数据库.md
+# 概念：Router/State/提取器、统一错误模型、SQLx 连接池与事务、tracing
+# 运行：cargo run 后访问 http://localhost:8080（SQLite 自动建库 accounting.db）
+[package]
+name = "accounting-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net"] }
+axum = "0.7"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "macros"] }
+tower-http = { version = "0.5", features = ["trace"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+anyhow = "1"

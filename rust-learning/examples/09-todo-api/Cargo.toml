@@ -1,0 +1,22 @@
+# 对应学习文档：rust-learning/09-测试质量与发布.md（收官可交付形态）
+# 概念：领域状态机 + SQLx 持久化 + 统一错误 + HTTP 级测试（oneshot）
+# 运行：cargo run 后访问 http://localhost:8080；cargo test 跑接口测试（内存库）
+[package]
+name = "todo-api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net"] }
+axum = "0.7"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite", "macros"] }
+tower-http = { version = "0.5", features = ["trace"] }
+tracing = "0.1"
+tracing-subscriber = "0.3"
+anyhow = "1"
+
+[dev-dependencies]
+tower = { version = "0.5", features = ["util"] }
+http-body-util = "0.1"

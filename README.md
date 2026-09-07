@@ -9,6 +9,10 @@ docs/
 ├── README.md                  # 本文件：仓库总览
 ├── java-learning/             # 70 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题 -> DDD×报表工具收官）
 ├── python-learning/           # Python 体系化学习文档（基础 -> 进阶 -> 并发 -> 网络/Web -> 数据分析，与 Java 体系并列）
+├── rust-learning/             # Rust 体系化学习文档（README 索引 + 13 章：主线 9 章（基础->所有权->类型->集合/错误->智能指针->并发->异步->Axum Web->工程化）+ 高级专题 4 章（过程宏->unsafe/FFI->Polars 数据分析->大数据/爬虫），每章含实战）+ examples 配套可运行工程
+├── csharp-learning/           # C# 体系化学习文档（README 索引 + 12 章：主线 9 章（环境->基础语法->面向对象->类型/模式匹配->集合/LINQ->错误调试->异步并发->.NET 类库->EF Core->ASP.NET Core Web）+ 高级专题 3 章（测试/质量/CI-Docker->CLR 底层/Span/unsafe/FFI->生态收官），零基础起步风格，每章含代码与实战）
+│   └── unity-learning/        # C# 游戏方向延伸专题（Unity 引擎：README + 7 章：主线 4 章（引擎与编辑器基础->脚本/生命周期/组件->物理/输入/UI->完整小游戏实战与发布）+ 进阶 3 章（uGUI/TMP 界面->动画 Animator->2D 精灵开发）+ demo-project 纯代码最小演示工程）
+├── opengl-learning/           # OpenGL/C++ 图形学学习文档（README 索引 + 8 章：主线 5 章（渲染管线与环境->三角形与着色器->纹理->变换与坐标系统->摄像机自由漫游）+ 进阶 3 章（Phong 光照与材质->高级渲染特性->帧缓冲后处理与天空盒），章节内完整代码，无配套工程）
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
 ├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
 └── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
@@ -44,6 +48,47 @@ ClickHouse/Doris 分析引擎、大数据平台全景、Hive 深度实战、数�
 AI Agent 全栈（OpenAI SDK Agent 开发、RAG 与向量数据库、LangGraph 编排、MCP 工具接入、
 机器学习 scikit-learn、多模态语音 Agent、Agent 评测体系）。
 详见 [`python-learning/README.md`](./python-learning/README.md)。
+
+### 3. Rust 体系（rust-learning/）
+
+面向已有编程基础的读者，**README 索引 + 13 章体系化学习文档 + 每章实战 + examples 配套可运行工程已全部完成**：
+主线 9 章——Rust 环境搭建与基础语法、所有权/借用/生命周期、结构体与枚举与 trait 与泛型、
+集合与迭代器与闭包与模块、错误处理（thiserror/anyhow）、智能指针与内存管理、并发（线程/mpsc/Arc）、
+Tokio 异步、Axum Web + SQLx 数据库、测试与工程化发布（clippy/Docker/CI）；
+高级专题 4 章——过程宏与元编程（syn/quote 自定义派生宏）、unsafe 与 FFI（extern "C"/cbindgen/Miri）、
+Polars 数据分析（Arrow/Parquet/惰性框架）、大数据与爬虫实战（reqwest/scraper + DataFusion SQL 管道）。
+一章一实战（命令行计算器 → 领域模型 → 词频统计 → 并发调度器 → 异步抓取器 → REST 服务 → 可交付待办服务 →
+派生宏 → 环形缓冲 → 数据分析 → 采集分析管道），工程代码见 [`rust-learning/examples/`](./rust-learning/examples/)。
+详见 [`rust-learning/README.md`](./rust-learning/README.md)。
+
+### 4. C# 体系（csharp-learning/）
+
+**零基础友好定位**（不预设编程经验，从安装 .NET SDK 讲起），同时每章附「与 Java/Python/Rust 对照」便于迁移，**README 索引 + 12 章体系化文档已全部完成**：
+主线 9 章——环境与 C# 基础语法、面向对象编程、类型系统进阶与模式匹配、集合/委托/LINQ、
+错误处理与调试、异步与并发（async/await/Task）、.NET 平台常用类库（文件/JSON/HttpClient/正则/NuGet）、
+数据库与 EF Core（迁移/CRUD/事务）、Web 开发 ASP.NET Core（Minimal API/REST/Swagger/发布）；
+高级专题 3 章——测试质量与发布（xUnit/集成测试/Docker/CI）、深入 CLR 与底层（值/引用内存、GC、
+Span/unsafe/指针/P-Invoke 本地互操作）、.NET 生态与收官（桌面/游戏/云/AI/大数据巡礼 + 多语言对照总表）。
+一章一实战（控制台计算器 → 银行账户体系 → 学生成绩管理 → 待办记事本 → 天气缓存工具 → 图书管理 → 待办 REST API → CI 测试套件 → 高性能与互操作示例）。
+详见 [`csharp-learning/README.md`](./csharp-learning/README.md)。
+
+### 5. Unity 游戏开发专题（csharp-learning/unity-learning/）
+
+**C# 体系的游戏方向延伸**：面向会用 C# 写控制台/Web 程序、但对游戏引擎零基础的读者，**README 索引 + 7 章文档（主线 4 章 + 进阶 3 章）+ 纯代码演示工程已全部完成**：
+主线：第一章 Unity 引擎与编辑器基础（场景/GameObject/组件/Transform/Prefab）→ 第二章 C# 脚本与生命周期（MonoBehaviour/Awake/Start/Update/Time.deltaTime/组件通信/协程）→
+第三章 物理碰撞、输入与 UI（Rigidbody/Collider/碰撞与触发事件/旧与新输入系统/uGUI 与 IMGUI）→ 第四章 完整小游戏实战与发布（需求拆解/状态机/代码驱动场景/Build 发布）。
+进阶：第五章 uGUI 与 TextMeshPro 界面开发（Canvas/锚点布局/事件系统/TMP 中文与富文本）→ 第六章 动画系统 Animator 状态机（AnimationClip/参数驱动/动画事件/Any State）→ 第七章 2D 精灵与 2D 游戏开发（正交相机/SpriteRenderer/2D 物理/代码生成精灵）。
+一章一实战（编辑器搭场景 → 生命周期观察器/变速小球 → 迷你打靶场 → 「接宝石」完整小游戏 → TMP HUD → 三态动画机 → 2D 彩球沙盘）。
+配套 [`demo-project/`](./csharp-learning/unity-learning/demo-project/) 为**零美术资源、纯 C# 自举**的最小 Unity 工程：无第三方包与场景文件，打开即跑五个演示（按 1~5 切换；进阶中的 uGUI/Animator 因依赖包与编辑器资产，改为章节内手把手实操）。
+详见 [`csharp-learning/unity-learning/README.md`](./csharp-learning/unity-learning/README.md)。
+
+### 6. OpenGL 图形学专题（opengl-learning/）
+
+**图形 / GPU 渲染方向**（宿主语言 C++，glad + GLFW 路线）：面向已有任一语言编程经验、想理解“引擎黑盒之下”的读者，**README 索引 + 8 章文档（主线 5 章 + 进阶 3 章）已全部完成**：
+主线：第一章 渲染管线总览与环境（GLFW/glad/GLM、最小窗口）→ 第二章 绘制三角形与着色器（VBO/VAO/EBO、GLSL）→ 第三章 纹理与采样（程序化棋盘/图片加载/多纹理）→ 第四章 变换与坐标系统（GLM/MVP/深度测试/3D 立方体）→ 第五章 摄像机与自由漫游（lookAt/欧拉角/deltaTime/Camera 类）。
+进阶：第六章 Phong 光照模型与材质（环境/漫反射/高光、法线矩阵）→ 第七章 高级渲染特性（深度细节/面剔除/混合/模板描边/多重采样）→ 第八章 帧缓冲后处理与天空盒（离屏渲染/滤镜/天空盒反射）。
+一章一实战（清屏换色 → 彩色三角形/矩形 → 棋盘纹理矩形 → 自转 3D 立方体 → WASD+鼠标自由漫游 → 受光立方体 → 描边+半透明场景 → 反色/像素化后处理）。**只提供学习文档**，示例为章节内可复制的完整代码 + 第一章一次性工程模板，不附带可编译工程（写作时未实机编译，请在本地按章验证）。
+详见 [`opengl-learning/README.md`](./opengl-learning/README.md)。
 
 ## 二、实战项目
 

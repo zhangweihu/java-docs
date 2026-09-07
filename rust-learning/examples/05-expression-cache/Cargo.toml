@@ -1,0 +1,8 @@
+# 对应学习文档：rust-learning/05-智能指针与内存管理.md
+# 概念：Box 表达递归类型（表达式树）、Rc/RefCell 内部可变性实现共享可变缓存
+[package]
+name = "expression-cache"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

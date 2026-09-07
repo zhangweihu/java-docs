@@ -1,0 +1,8 @@
+# 对应学习文档：rust-learning/06-并发编程.md
+# 概念：thread::spawn、mpsc 结果回收、Arc<Mutex> 共享进度、join 汇总
+[package]
+name = "concurrent-scheduler"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]

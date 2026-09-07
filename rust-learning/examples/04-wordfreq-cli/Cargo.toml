@@ -1,0 +1,9 @@
+# 对应学习文档：rust-learning/04-集合迭代器闭包模块与错误处理.md
+# 概念：HashMap/entry、split 迭代器、库(顶层) 与 入口 分离、anyhow 错误上下文
+[package]
+name = "wordfreq-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1"

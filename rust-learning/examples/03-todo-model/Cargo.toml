@@ -1,0 +1,8 @@
+# 对应学习文档：rust-learning/03-结构体枚举trait与泛型.md
+# 概念：struct/enum 消除非法状态、trait 抽象仓储、方法链、Result
+[package]
+name = "todo-model"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
