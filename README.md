@@ -7,7 +7,7 @@
 ```
 docs/
 ├── README.md                  # 本文件：仓库总览
-├── java-learning/             # 70 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题 -> DDD×报表工具收官）
+├── java-learning/             # 82 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题 -> DDD×报表工具 -> DDD×分层架构专题 -> 工具库扩展专题 openCSV/Tika 收官）
 ├── python-learning/           # Python 体系化学习文档（基础 -> 进阶 -> 并发 -> 网络/Web -> 数据分析，与 Java 体系并列）
 ├── rust-learning/             # Rust 体系化学习文档（README 索引 + 13 章：主线 9 章（基础->所有权->类型->集合/错误->智能指针->并发->异步->Axum Web->工程化）+ 高级专题 4 章（过程宏->unsafe/FFI->Polars 数据分析->大数据/爬虫），每章含实战）+ examples 配套可运行工程
 ├── csharp-learning/           # C# 体系化学习文档（README 索引 + 12 章：主线 9 章（环境->基础语法->面向对象->类型/模式匹配->集合/LINQ->错误调试->异步并发->.NET 类库->EF Core->ASP.NET Core Web）+ 高级专题 3 章（测试/质量/CI-Docker->CLR 底层/Span/unsafe/FFI->生态收官），零基础起步风格，每章含代码与实战）
@@ -15,14 +15,15 @@ docs/
 ├── opengl-learning/           # OpenGL/C++ 图形学学习文档（README 索引 + 8 章：主线 5 章（渲染管线与环境->三角形与着色器->纹理->变换与坐标系统->摄像机自由漫游）+ 进阶 3 章（Phong 光照与材质->高级渲染特性->帧缓冲后处理与天空盒），章节内完整代码，无配套工程）
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
 ├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
-└── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
+├── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
+└── ddd-learning/              # DDD × 分层架构实战专题（配套第 71~80 章；含 4 个可运行示例工程 examples/01-04）
 ```
 
 ## 一、学习文档
 
 ### 1. Java 体系（java-learning/）
 
-70 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
+82 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
 Spring Boot、缓存、安全、设计模式、微服务、消息队列、容器化、搜索、
 CI/CD、JVM 内功、MySQL 调优、Netty、Kafka、Redis 深度、微服务治理、
 Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker/Kong/Nacos/数据迁移/建表脚本 七大专项精讲、
@@ -36,7 +37,13 @@ DevOps/GitOps、云原生安全、更多行业案例（教育/医疗/政务/制�
 大数据专题九连：Flink 流式计算、Flink 实时数仓分层实战、Spark 体系、
 ClickHouse/Doris 分析引擎、大数据平台全景、Hive 深度实战、数据湖 Iceberg 实战、
 机器学习平台、BI 可视化实践，
-最终以 DDD×企业报表工具收官：DataMax 报表开发与 DDD 集成实战（限界上下文/读模型/口径铁律/行级权限）等。
+DDD×企业报表工具实战（DataMax 集成实战），
+DDD × 分层架构专题（第 71~80 章）：分层架构全景、整洁架构落地、六边形架构、
+应用服务与 CQRS 入口、Modular Monolith 落地、订单/库存/支付三大领域实战、跨上下文 Saga/Outbox 集成、
+演进路线与 30 道面试冲刺题；并在 [`ddd-learning/examples/`](./ddd-learning/examples/) 提供 4 个可运行示例工程
+（01 分层架构对比 / 02 模块化单体 / 03 订单完整 DDD / 04 Saga 跨服务集成），
+**最终以工具库扩展专题收官（第 81~82 章）**：openCSV 实战（CSV 读写 / 注解映射 / 流式处理 / 用户导入订单导出）、
+Apache Tika 实战（1400+ 文件格式检测 / 元数据抽取 / 文本提取 / Spring Boot 上传安全与全文检索集成）。
 详见 [`java-learning/README.md`](./java-learning/README.md)。
 
 ### 2. Python 体系（python-learning/）
@@ -97,6 +104,7 @@ Span/unsafe/指针/P-Invoke 本地互操作）、.NET 生态与收官（桌面/�
 | **mall-boot** | Spring Boot 3.2 单体商城：JWT 登录、缓存治理、防超卖下单、Redis 对接验证、SkyWalking 探针、Docker/K8s/Helm 部署 | 第 31 章 | [mall-boot/README.md](./mall-boot/README.md) |
 | **mall-cloud** | Spring Cloud 微服务商城：Nacos + Gateway + Feign + Seata 分布式事务 + Sentinel 限流（规则配置中心化）+ SkyWalking + K8s/Helm 部署 | 第 30、32 章 | [mall-cloud/README.md](./mall-cloud/README.md) |
 | **migration-demo** | 数据迁移实操：Spring Boot + Flyway 自动执行 V1~V5 版本化迁移脚本（建表/加字段/回填数据/索引），含 docker-compose 一键拉起 MySQL | 第 38 章 | [migration-demo/README.md](./migration-demo/README.md) |
+| **ddd-learning** | DDD × 分层架构实战：含 4 个 Spring Boot 3.2 示例工程（examples/01 分层架构对比 / 02 模块化单体 / 03 订单完整 DDD / 04 Saga 跨服务集成），演示 MVC/三层/整洁架构/六边形/Modular Monolith 对比、ArchUnit 边界守护、Saga+Outbox 跨服务一致 | 第 71~80 章 | [ddd-learning/README.md](./ddd-learning/README.md) |
 
 ### 两个项目的关系（学习路径）
 

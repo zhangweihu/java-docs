@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.ddd</groupId>
+    <artifactId>modular-monolith</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>modular-monolith</name>
+    <description>DDD 模块化单体示例（user/order/inventory/payment 四模块）</description>
+
+    <modules>
+        <module>modular-common</module>
+        <module>modular-user</module>
+        <module>modular-order</module>
+        <module>modular-inventory</module>
+        <module>modular-payment</module>
+        <module>modular-app</module>
+        <module>modular-archunit</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ddd</groupId>
+                <artifactId>modular-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ddd</groupId>
+                <artifactId>modular-user</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ddd</groupId>
+                <artifactId>modular-order</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ddd</groupId>
+                <artifactId>modular-inventory</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ddd</groupId>
+                <artifactId>modular-payment</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

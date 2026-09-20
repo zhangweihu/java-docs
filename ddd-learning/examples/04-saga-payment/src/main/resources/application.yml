@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: ddd-saga-payment
+  datasource:
+    url: jdbc:h2:mem:ddd_saga;DB_CLOSE_DELAY=-1;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:sql/schema.sql
+
+server:
+  port: 8080
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.ddd.saga: debug
+    com.ddd.saga.outbox: info
