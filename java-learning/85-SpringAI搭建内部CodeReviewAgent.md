@@ -1396,7 +1396,7 @@ public class OrderService {
     }
 
     // 问题 2: 密钥硬编码
-    private String STRIPE_KEY = "<YOUR_STRIPE_KEY>";
+    private String STRIPE_KEY = "";
 
     // 问题 3: N+1 查询
     public List<OrderDTO> listAll() {
