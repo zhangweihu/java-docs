@@ -7,7 +7,7 @@
 ```
 docs/
 ├── README.md                  # 本文件：仓库总览
-├── java-learning/             # 82 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题 -> DDD×报表工具 -> DDD×分层架构专题 -> 工具库扩展专题 openCSV/Tika 收官）
+├── java-learning/             # 85 章体系化学习文档（基础 -> Web -> 微服务 -> 深度专题 -> 专项精讲 -> 实战 -> 领域建模 -> DDD/状态机/CQRS -> 分布式事务 -> 企业级架构 -> 云原生 -> 行业方案 -> 工程化与 Operator -> 数据专题 -> 大数据专题 -> DDD×报表工具 -> DDD×分层架构专题 -> 工具库扩展专题 openCSV/Tika -> Harness 专题 测试 Harness + AI Agent Harness 收官 -> Code Review Agent 实战收官）
 ├── python-learning/           # Python 体系化学习文档（基础 -> 进阶 -> 并发 -> 网络/Web -> 数据分析，与 Java 体系并列）
 ├── rust-learning/             # Rust 体系化学习文档（README 索引 + 13 章：主线 9 章（基础->所有权->类型->集合/错误->智能指针->并发->异步->Axum Web->工程化）+ 高级专题 4 章（过程宏->unsafe/FFI->Polars 数据分析->大数据/爬虫），每章含实战）+ examples 配套可运行工程
 ├── csharp-learning/           # C# 体系化学习文档（README 索引 + 12 章：主线 9 章（环境->基础语法->面向对象->类型/模式匹配->集合/LINQ->错误调试->异步并发->.NET 类库->EF Core->ASP.NET Core Web）+ 高级专题 3 章（测试/质量/CI-Docker->CLR 底层/Span/unsafe/FFI->生态收官），零基础起步风格，每章含代码与实战）
@@ -16,14 +16,14 @@ docs/
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
 ├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
 ├── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
-└── ddd-learning/              # DDD × 分层架构实战专题（配套第 71~80 章；含 4 个可运行示例工程 examples/01-04）
+└── ddd-learning/              # DDD × 分层架构实战专题（配套第 71~80 章；含 5 个可运行示例工程 examples/01-04 + spring-ai-code-review-agent）
 ```
 
 ## 一、学习文档
 
 ### 1. Java 体系（java-learning/）
 
-82 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
+85 章完整学习路线，覆盖：Java 基础、面向对象、集合、多线程、IO/网络、
 Spring Boot、缓存、安全、设计模式、微服务、消息队列、容器化、搜索、
 CI/CD、JVM 内功、MySQL 调优、Netty、Kafka、Redis 深度、微服务治理、
 Spring Boot/Cloud 项目实战，以及 MySQL/Redis/Docker/Kong/Nacos/数据迁移/建表脚本 七大专项精讲、
@@ -43,7 +43,12 @@ DDD × 分层架构专题（第 71~80 章）：分层架构全景、整洁架构
 演进路线与 30 道面试冲刺题；并在 [`ddd-learning/examples/`](./ddd-learning/examples/) 提供 4 个可运行示例工程
 （01 分层架构对比 / 02 模块化单体 / 03 订单完整 DDD / 04 Saga 跨服务集成），
 **最终以工具库扩展专题收官（第 81~82 章）**：openCSV 实战（CSV 读写 / 注解映射 / 流式处理 / 用户导入订单导出）、
-Apache Tika 实战（1400+ 文件格式检测 / 元数据抽取 / 文本提取 / Spring Boot 上传安全与全文检索集成）。
+Apache Tika 实战（1400+ 文件格式检测 / 元数据抽取 / 文本提取 / Spring Boot 上传安全与全文检索集成），
+并以 Harness 专题收官（第 83~84 章）：**软件测试 Harness**（JUnit 5 / Mockito / Spring Boot Test / Testcontainers / REST Assured / JaCoCo）、
+**AI Agent Harness**（Spring AI / Function Calling / ReAct / Memory / Plan-and-Execute / 多 Agent 编排 / 客服 Agent 实战），
+**并以企业级 DevOps 落地收官（第 85 章）**：Spring AI 搭建内部 Code Review Agent
+（多 Agent 并行协作：安全/性能/DDD/测试/风格 五维审查 + 多 LLM 切换 + GitLab/GitHub 双平台接入 +
+Webhook + 飞书/钉钉通知 + 严重问题自动阻塞合并），配套 [`ddd-learning/examples/spring-ai-code-review-agent/`](./ddd-learning/examples/spring-ai-code-review-agent/) 完整可运行工程。
 详见 [`java-learning/README.md`](./java-learning/README.md)。
 
 ### 2. Python 体系（python-learning/）
@@ -104,7 +109,7 @@ Span/unsafe/指针/P-Invoke 本地互操作）、.NET 生态与收官（桌面/�
 | **mall-boot** | Spring Boot 3.2 单体商城：JWT 登录、缓存治理、防超卖下单、Redis 对接验证、SkyWalking 探针、Docker/K8s/Helm 部署 | 第 31 章 | [mall-boot/README.md](./mall-boot/README.md) |
 | **mall-cloud** | Spring Cloud 微服务商城：Nacos + Gateway + Feign + Seata 分布式事务 + Sentinel 限流（规则配置中心化）+ SkyWalking + K8s/Helm 部署 | 第 30、32 章 | [mall-cloud/README.md](./mall-cloud/README.md) |
 | **migration-demo** | 数据迁移实操：Spring Boot + Flyway 自动执行 V1~V5 版本化迁移脚本（建表/加字段/回填数据/索引），含 docker-compose 一键拉起 MySQL | 第 38 章 | [migration-demo/README.md](./migration-demo/README.md) |
-| **ddd-learning** | DDD × 分层架构实战：含 4 个 Spring Boot 3.2 示例工程（examples/01 分层架构对比 / 02 模块化单体 / 03 订单完整 DDD / 04 Saga 跨服务集成），演示 MVC/三层/整洁架构/六边形/Modular Monolith 对比、ArchUnit 边界守护、Saga+Outbox 跨服务一致 | 第 71~80 章 | [ddd-learning/README.md](./ddd-learning/README.md) |
+| **ddd-learning** | DDD × 分层架构实战：含 5 个 Spring Boot 3.2 示例工程（examples/01 分层架构对比 / 02 模块化单体 / 03 订单完整 DDD / 04 Saga 跨服务集成 / spring-ai-code-review-agent 多 Agent 自动化 Code Review），演示 MVC/三层/整洁架构/六边形/Modular Monolith 对比、ArchUnit 边界守护、Saga+Outbox 跨服务一致、Spring AI Function Calling + 多 Agent 并行审查 | 第 71~80、85 章 | [ddd-learning/README.md](./ddd-learning/README.md) |
 
 ### 两个项目的关系（学习路径）
 

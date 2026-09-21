@@ -89,6 +89,9 @@
 | 第八十章 | 专题收官：6 档分层能力矩阵；演进路线（单体→模块化→微服务→云原生）；边界守护 6 种手段；Conway 定律 + 团队拓扑 4 类型；30 道面试冲刺题 + 标准答案 | [80-专题收官演进路线.md](./80-专题收官演进路线.md) |
 | 第八十一章 | openCSV 实战：CSV 读写 + 注解映射 + 流式处理 + 编码实战 + 用户导入/订单导出完整工程；与 Commons CSV / Univocity 对比矩阵；5 大踩坑 + 5 道面试题 | [81-openCSV实战.md](./81-openCSV实战.md) |
 | 第八十二章 | Apache Tika 实战：内容检测（1400+ MIME）+ 元数据提取 + 文本抽取 + OCR；与 PDFBox/POI 对比矩阵；上传安全 / 全文检索预处理 / Spring Boot 集成；EXIF 隐私防护 + Zip Slip 安全 | [82-ApacheTika实战.md](./82-ApacheTika实战.md) |
+| 第八十三章 | 软件测试 Harness 实战：5 大核心组件（Fixture/Runner/Reporter/Driver/Slice）；JUnit 5 + Mockito 5 + Spring Boot Test + Testcontainers + REST Assured + JaCoCo 完整 Harness；测试金字塔 + 多模块分层 + CI/CD 集成；12 大踩坑 + 5 道面试题 | [83-软件测试Harness实战.md](./83-软件测试Harness实战.md) |
+| 第八十四章 | AI Agent Harness 实战：5 大核心组件（LLM/Tool/Memory/Planner/Tracer）；Spring AI 1.x 完整工程；Function Calling + ReAct + Plan-and-Execute + 多 Agent 编排；客服 Agent 完整实战；10 大踩坑 + 5 道面试题 | [84-AIAgentHarness实战.md](./84-AIAgentHarness实战.md) |
+| 第八十五章 | Spring AI 搭建内部 Code Review Agent：痛点与目标 + 5 个 SubAgent 协作（安全/性能/DDD/测试/风格）+ 多 LLM 切换 + GitLab/GitHub 双平台 + Webhook + 并行编排 + 7 大踩坑 + 5 道面试题；完整可运行工程：spring-ai-code-review-agent | [85-SpringAI搭建内部CodeReviewAgent.md](./85-SpringAI搭建内部CodeReviewAgent.md) |
 
 ## 学习路线
 

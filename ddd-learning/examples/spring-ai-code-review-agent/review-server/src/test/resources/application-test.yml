@@ -1,0 +1,32 @@
+server:
+  port: 0  # 随机端口
+
+spring:
+  profiles:
+    active: test
+  datasource:
+    url: jdbc:h2:mem:reviewtest;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  redis:
+    host: localhost
+    port: 6379
+
+# 测试中不需要真实 LLM 凭证
+openai:
+  api-key: test-key
+
+review:
+  enabled-agents:
+    - Security
+    - Style
+  timeout-seconds: 10
+  diff-truncate-bytes: 1000
+
+logging:
+  level:
+    com.example.review: DEBUG

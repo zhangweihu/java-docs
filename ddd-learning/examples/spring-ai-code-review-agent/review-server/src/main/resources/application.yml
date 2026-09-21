@@ -1,0 +1,97 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: review-agent
+
+  profiles:
+    # openai / dashscope / deepseek / ollama
+    active: openai
+
+  # ====== AI Provider 配置（按 profile 启用） ======
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:}
+      chat:
+        options:
+          model: gpt-4o
+          temperature: 0.1
+          max-tokens: 4000
+
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY:}
+      chat:
+        options:
+          model: qwen-plus
+          temperature: 0.1
+
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY:}
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.1
+
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_MODEL:qwen2.5-coder:7b}
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:reviewdb;DB_CLOSE_DELAY=-1}
+    username: ${SPRING_DATASOURCE_USERNAME:sa}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+  redis:
+    host: ${SPRING_REDIS_HOST:localhost}
+    port: ${SPRING_REDIS_PORT:6379}
+
+# ====== GitLab / GitHub 配置 ======
+gitlab:
+  url: ${GITLAB_URL:https://gitlab.com}
+  token: ${GITLAB_TOKEN:}
+
+github:
+  token: ${GITHUB_TOKEN:}
+
+# ====== 评审服务配置 ======
+review:
+  enabled-agents:
+    - Security
+    - Performance
+    - DDD
+    - TestCoverage
+    - Style
+  timeout-seconds: 120
+  diff-truncate-bytes: 50000
+  block-on:
+    - BLOCKER
+    - CRITICAL
+  notify:
+    feishu-webhook: ${FEISHU_WEBHOOK:}
+    dingtalk-webhook: ${DINGTALK_WEBHOOK:}
+
+logging:
+  level:
+    com.example.review: INFO
+    org.springframework.ai: INFO
+    org.gitlab4j: WARN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always

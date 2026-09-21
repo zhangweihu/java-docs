@@ -1,6 +1,6 @@
 # DDD × 分层架构 专题（71~80 章）
 
-> **定位**：本专题是 `java-learning/` 70 章主线之**后**的"分层架构与 DDD 工程化"深度专题——10 章正文 + 4 个可运行 Spring Boot 示例工程。
+> **定位**：本专题是 `java-learning/` 70 章主线之**后**的"分层架构与 DDD 工程化"深度专题——10 章正文 + 5 个可运行 Spring Boot 示例工程（含 spring-ai-code-review-agent）。
 > **目标读者**：已学完 `java-learning/` 第 40~46 章（贫血模型、DDD 战术、状态机、CQRS/ES、事件风暴、Axon、分布式事务）与第 70 章（DDD×报表）的读者，希望建立**分层架构视角下**的工程化能力，能把分散的 DDD 模式串成完整的项目骨架。
 
 ## 一、为什么需要"分层架构 × DDD"
@@ -32,7 +32,7 @@
 
 ## 三、示例工程索引
 
-> 4 个工程均遵循 [`CONVENTIONS.md`](./CONVENTIONS.md) 共享约定（Spring Boot 3.2.5 + Java 17 + MyBatis-Plus 3.5.6 + Maven）。
+> 5 个工程均遵循 [`CONVENTIONS.md`](./CONVENTIONS.md) 共享约定（Spring Boot 3.2.5 + Java 17 + MyBatis-Plus 3.5.6 + Maven；spring-ai-code-review-agent 例外，使用 Spring Boot 3.3.4 + Spring AI 1.x）。
 
 | 工程 | 定位 | 启动方式 |
 | --- | --- | --- |
@@ -40,6 +40,7 @@
 | [02-modular-monolith](./examples/02-modular-monolith/) | Maven 多模块单体（user / order / inventory / payment） | `docker compose up -d --build` |
 | [03-ecommerce-order](./examples/03-ecommerce-order/) | 订单上下文完整 DDD 实战（聚合/状态机/事件/ACL） | `docker compose up -d --build` |
 | [04-saga-payment](./examples/04-saga-payment/) | 跨订单-库存-支付的 Saga 编排与 Outbox 模式 | `docker compose up -d --build` |
+| [spring-ai-code-review-agent](./examples/spring-ai-code-review-agent/) | Spring AI 多 Agent 自动化 Code Review 系统（5 个 SubAgent 并行 + 多 LLM 切换 + GitLab/GitHub 双平台） | `SPRING_PROFILES_ACTIVE=openai OPENAI_API_KEY=sk-xxx docker compose up -d` |
 
 每个工程目录下都有独立 `README.md`，包含技术栈、运行步骤、目录结构、代码导读。
 
@@ -57,6 +58,7 @@
 | 第 45 章 Axon Framework 实战 | 第 79 章"事件总线选择" |
 | 第 46 章 分布式事务与 Saga | 第 79 章"Saga 实战" |
 | 第 70 章 DataMax 报表与 DDD | 第 80 章"读侧 CQRS 与报表模块的衔接思路" |
+| 第 84 章 AI Agent Harness | spring-ai-code-review-agent 工程（多 Agent 并行 Code Review） |
 
 ## 五、学习路线建议
 

@@ -1,0 +1,14 @@
+{
+  "object_kind": "merge_request",
+  "project": {
+    "path_with_namespace": "my-group/my-project"
+  },
+  "object_attributes": {
+    "action": "open",
+    "iid": 42,
+    "title": "feat: order service improvements",
+    "description": "支持订单支付 + 取消逻辑",
+    "source_branch": "feature/order-fix",
+    "target_branch": "main"
+  }
+}
