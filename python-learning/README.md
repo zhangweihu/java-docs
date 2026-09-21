@@ -4,7 +4,7 @@
 >
 > 定位：Java 负责高性能企业后端，Python 负责脚本自动化、数据分析、AI 与快速 Web 开发（FastAPI/Django）——两套体系互补。
 >
-> ✅ **9 章体系 + 7 章 AI/数据扩展（Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测）已全部发布**，从基础语法到 AI Agent 全栈一条龙学完。
+> ✅ **9 章基础体系 + 9 章 AI/工程化扩展（Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
 
 ## 目录结构
 
@@ -26,6 +26,8 @@
 | 第十四章 | 机器学习入门：监督/无监督三任务、scikit-learn 统一 API（fit/predict）、回归/分类评估指标、特征工程（编码/标准化/防泄漏）、KMeans/PCA、交叉验证与 GridSearchCV、客户流失预测实战 | [14-机器学习.md](./14-机器学习.md) | ✅ 已发布 |
 | 第十五章 | 多模态语音 Agent：多模态三形态、STT（gpt-4o-transcribe）、TTS（gpt-4o-mini-tts）、Realtime 全双工、图像理解与生成、语音问答助手实战、延迟/合规 | [15-多模态语音Agent.md](./15-多模态语音Agent.md) | ✅ 已发布 |
 | 第十六章 | Agent 评测体系：评测金字塔（单元/集成/E2E/线上）、任务/流程/成本指标、Golden Set、LLM-as-Judge（rubric/成对比较/偏差防护）、pytest+CI 回归、客服评测套件实战 | [16-Agent评测体系.md](./16-Agent评测体系.md) | ✅ 已发布 |
+| 第十七章 | AutoGen 多 Agent 协作：三层架构 + AssistantAgent + Reflection 双 Agent 迭代 + RoundRobin/SelectorGroupChat 群聊调度 + FunctionTool/MCP 整合 + DiGraphBuilder 显式拓扑 + 人机协同 + Console 观测 + AutoGen vs LangGraph 选型 | [17-AutoGen多Agent协作.md](./17-AutoGen多Agent协作.md) | ✅ 已发布 |
+| 第十八章 | Python Harness 实战：测试 Harness 五大组件 + pytest fixture 全套（scope/嵌套/conftest）+ 参数化 + mock（pytest-mock/respx）+ 覆盖率（行/分支/增量）+ 变异测试（mutmut）+ 属性测试（Hypothesis）+ AI Agent Harness 工具调用断言 + LLM-as-Judge + 录制回放 + Langfuse 观测 + 成本延迟门禁 + AutoGen 项目 Harness 实战 + GitHub Actions CI | [18-PythonHarness实战.md](./18-PythonHarness实战.md) | ✅ 已发布 |
 
 ## 学习路线
 
@@ -38,15 +40,16 @@
 
 AI 扩展（需前 9 章基础）──► ⑩ Agent 开发 ──► ⑪ RAG/向量库 ──► ⑫ LangGraph 编排 ──► ⑬ MCP 工具
     │
-    └──────────► ⑭ 机器学习 ──► ⑮ 语音多模态 ──► ⑯ Agent 评测（质量闭环）
+    └──────────► ⑭ 机器学习 ──► ⑮ 语音多模态 ──► ⑯ Agent 评测（质量闭环）──► ⑰ AutoGen 多 Agent ──► ⑱ Python Harness（生产质量护栏收官）
 ```
 
 ## 学习建议
 
 1. **先跑通第一章**：Python 语法量小但细节多（缩进、动态类型、推导式、装饰器），务必动手；
 2. **对照 Java 学**：把 Java 里熟悉的概念（List → list、HashMap → dict、Stream → 推导式、Lambda → lambda、注解+AOP → 装饰器）映射过去；
-3. **按需深入**：后端工程师优先学 3/4/5/6 章（脚本 + 服务）；数据分析方向优先 7 章；
-4. **实践出真知**：每章结尾的练习题 + 综合实战（如第一章学生成绩管理系统）必须独立完成。
+3. **按需深入**：后端工程师优先学 3/4/5/6 章（脚本 + 服务）；数据分析方向优先 7 章；AI 工程师优先 10~18 章（Agent 全栈 + Harness）；
+4. **实践出真知**：每章结尾的练习题 + 综合实战（如第一章学生成绩管理系统）必须独立完成；
+5. **多 Agent 与质量护栏是"上线前最后两公里"**：第 17 章学会编排复杂 Agent 协作，第 18 章学会为它装上"质量护栏"——这两章合起来是从 Demo 到生产的关键。
 
 ## 配套环境
 
