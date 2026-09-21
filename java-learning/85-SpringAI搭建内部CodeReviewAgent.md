@@ -1396,7 +1396,7 @@ public class OrderService {
     }
 
     // 问题 2: 密钥硬编码
-    private String STRIPE_KEY = "sk_live_51Hxxxxxxxxxxxxxxxxxxxxxxxx";
+    private String STRIPE_KEY = "<YOUR_STRIPE_KEY>";
 
     // 问题 3: N+1 查询
     public List<OrderDTO> listAll() {
@@ -1841,9 +1841,9 @@ git clone <repo>/spring-ai-code-review-agent.git
 cd spring-ai-code-review-agent
 
 # 2. 设置环境变量
-export OPENAI_API_KEY=sk-xxxxx
+export OPENAI_API_KEY=<your-openai-key>
 export GITLAB_URL=https://gitlab.example.com
-export GITLAB_TOKEN=glpat-xxxxx
+export GITLAB_TOKEN=<your-gitlab-token>
 
 # 3. 启动
 docker-compose up -d
