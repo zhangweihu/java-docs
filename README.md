@@ -53,12 +53,12 @@ Webhook + 飞书/钉钉通知 + 严重问题自动阻塞合并），配套 [`ddd
 
 ### 2. Python 体系（python-learning/）
 
-面向已有 Java 基础的读者，全程穿插 Python vs Java 对比，**9 章体系 + 7 章 AI/数据扩展已全部完成**：
+面向已有 Java 基础的读者，全程穿插 Python vs Java 对比，**9 章基础体系 + 10 章 AI/工程化扩展已全部完成**：
 基础与核心语法、进阶语法（迭代器/装饰器/元类/类型注解）、文件与标准库、
 并发与异步（GIL/asyncio）、网络爬虫、FastAPI Web 开发、数据分析（NumPy/Pandas/Matplotlib）、
 自动化脚本与工程化、工程化与测试（pytest/打包/CI/CD）、
-AI Agent 全栈（OpenAI SDK Agent 开发、RAG 与向量数据库、LangGraph 编排、MCP 工具接入、
-机器学习 scikit-learn、多模态语音 Agent、Agent 评测体系）。
+AI 全栈（LLM 基础与应用、OpenAI SDK Agent 开发、RAG 与向量数据库、LangGraph 编排、MCP 工具接入、
+机器学习 scikit-learn、多模态语音 Agent、Agent 评测、AutoGen 多 Agent 协作、Python Harness）。
 详见 [`python-learning/README.md`](./python-learning/README.md)。
 
 ### 3. Rust 体系（rust-learning/）

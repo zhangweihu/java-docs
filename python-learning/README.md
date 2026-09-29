@@ -4,7 +4,7 @@
 >
 > 定位：Java 负责高性能企业后端，Python 负责脚本自动化、数据分析、AI 与快速 Web 开发（FastAPI/Django）——两套体系互补。
 >
-> ✅ **9 章基础体系 + 9 章 AI/工程化扩展（Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
+> ✅ **9 章基础体系 + 10 章 AI/工程化扩展（LLM 基础 / Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
 
 ## 目录结构
 
@@ -28,6 +28,7 @@
 | 第十六章 | Agent 评测体系：评测金字塔（单元/集成/E2E/线上）、任务/流程/成本指标、Golden Set、LLM-as-Judge（rubric/成对比较/偏差防护）、pytest+CI 回归、客服评测套件实战 | [16-Agent评测体系.md](./16-Agent评测体系.md) | ✅ 已发布 |
 | 第十七章 | AutoGen 多 Agent 协作：三层架构 + AssistantAgent + Reflection 双 Agent 迭代 + RoundRobin/SelectorGroupChat 群聊调度 + FunctionTool/MCP 整合 + DiGraphBuilder 显式拓扑 + 人机协同 + Console 观测 + AutoGen vs LangGraph 选型 | [17-AutoGen多Agent协作.md](./17-AutoGen多Agent协作.md) | ✅ 已发布 |
 | 第十八章 | Python Harness 实战：测试 Harness 五大组件 + pytest fixture 全套（scope/嵌套/conftest）+ 参数化 + mock（pytest-mock/respx）+ 覆盖率（行/分支/增量）+ 变异测试（mutmut）+ 属性测试（Hypothesis）+ AI Agent Harness 工具调用断言 + LLM-as-Judge + 录制回放 + Langfuse 观测 + 成本延迟门禁 + AutoGen 项目 Harness 实战 + GitHub Actions CI | [18-PythonHarness实战.md](./18-PythonHarness实战.md) | ✅ 已发布 |
+| 第十九章 | LLM 基础与应用：语言模型与 Transformer 直觉、Token/上下文窗口、预训练与对齐、生成参数、Python 调用/流式/结构化输出、提示词、安全验证、模型选型与成本延迟、自研 LLM 技术栈与微调/训练路线、工单摘要实战 | [19-LLM基础与应用.md](./19-LLM基础与应用.md) | ✅ 已发布 |
 
 ## 学习路线
 
@@ -38,7 +39,7 @@
 
 自动化脚本 ──► 工程化/测试（穿插学习：写脚本时顺手用上）
 
-AI 扩展（需前 9 章基础）──► ⑩ Agent 开发 ──► ⑪ RAG/向量库 ──► ⑫ LangGraph 编排 ──► ⑬ MCP 工具
+AI 扩展（需前 9 章基础）──► ⑲ LLM 基础 ──► ⑩ Agent 开发 ──► ⑪ RAG/向量库 ──► ⑫ LangGraph 编排 ──► ⑬ MCP 工具
     │
     └──────────► ⑭ 机器学习 ──► ⑮ 语音多模态 ──► ⑯ Agent 评测（质量闭环）──► ⑰ AutoGen 多 Agent ──► ⑱ Python Harness（生产质量护栏收官）
 ```
@@ -47,7 +48,7 @@ AI 扩展（需前 9 章基础）──► ⑩ Agent 开发 ──► ⑪ RAG/�
 
 1. **先跑通第一章**：Python 语法量小但细节多（缩进、动态类型、推导式、装饰器），务必动手；
 2. **对照 Java 学**：把 Java 里熟悉的概念（List → list、HashMap → dict、Stream → 推导式、Lambda → lambda、注解+AOP → 装饰器）映射过去；
-3. **按需深入**：后端工程师优先学 3/4/5/6 章（脚本 + 服务）；数据分析方向优先 7 章；AI 工程师优先 10~18 章（Agent 全栈 + Harness）；
+3. **按需深入**：后端工程师优先学 3/4/5/6 章（脚本 + 服务）；数据分析方向优先 7 章；AI 工程师建议先读第 19 章建立 LLM 基础，再按需学习第 10~18 章（Agent 全栈 + Harness）；
 4. **实践出真知**：每章结尾的练习题 + 综合实战（如第一章学生成绩管理系统）必须独立完成；
 5. **多 Agent 与质量护栏是"上线前最后两公里"**：第 17 章学会编排复杂 Agent 协作，第 18 章学会为它装上"质量护栏"——这两章合起来是从 Demo 到生产的关键。
 
