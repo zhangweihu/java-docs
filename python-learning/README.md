@@ -4,7 +4,7 @@
 >
 > 定位：Java 负责高性能企业后端，Python 负责脚本自动化、数据分析、AI 与快速 Web 开发（FastAPI/Django）——两套体系互补。
 >
-> ✅ **9 章基础体系 + 10 章 AI/工程化扩展（LLM 基础 / Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
+> ✅ **9 章基础体系 + 11 章 AI/工程化扩展（LLM 基础 / Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness / Harness×多 Agent 协同）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
 
 ## 目录结构
 
@@ -29,6 +29,7 @@
 | 第十七章 | AutoGen 多 Agent 协作：三层架构 + AssistantAgent + Reflection 双 Agent 迭代 + RoundRobin/SelectorGroupChat 群聊调度 + FunctionTool/MCP 整合 + DiGraphBuilder 显式拓扑 + 人机协同 + Console 观测 + AutoGen vs LangGraph 选型 | [17-AutoGen多Agent协作.md](./17-AutoGen多Agent协作.md) | ✅ 已发布 |
 | 第十八章 | Python Harness 实战：测试 Harness 五大组件 + pytest fixture 全套（scope/嵌套/conftest）+ 参数化 + mock（pytest-mock/respx）+ 覆盖率（行/分支/增量）+ 变异测试（mutmut）+ 属性测试（Hypothesis）+ AI Agent Harness 工具调用断言 + LLM-as-Judge + 录制回放 + Langfuse 观测 + 成本延迟门禁 + AutoGen 项目 Harness 实战 + GitHub Actions CI | [18-PythonHarness实战.md](./18-PythonHarness实战.md) | ✅ 已发布 |
 | 第十九章 | LLM 基础与应用：语言模型与 Transformer 直觉、Token/上下文窗口、预训练与对齐、生成参数、Python 调用/流式/结构化输出、提示词、安全验证、模型选型与成本延迟、自研 LLM 技术栈与微调/训练路线、工单摘要实战 | [19-LLM基础与应用.md](./19-LLM基础与应用.md) | ✅ 已发布 |
+| 第二十章 | Harness 驱动的多 Agent 协同（全系列收官）：多 Agent 六大失效模式 + Harness 三层门禁（L1 单 Agent / L2 协同 / L3 端到端）+ 四种协作拓扑（流水线/主从/圆桌/移交 + 选型决策树）+ 多 Agent 编写五步法（拆解/角色/协议/编排/兜底）+ system prompt 四要素 + 手写最小多 Agent 框架（100 行）+ AutoGen 四专家代码评审系统 + 多 Agent 特有断言（路由/全员参与/不越界/不死循环/不爆炸）+ 成本门禁 + 调试技巧 | [20-Harness驱动的多Agent协同实战.md](./20-Harness驱动的多Agent协同实战.md) | ✅ 已发布 |
 
 ## 学习路线
 
@@ -41,7 +42,11 @@
 
 AI 扩展（需前 9 章基础）──► ⑲ LLM 基础 ──► ⑩ Agent 开发 ──► ⑪ RAG/向量库 ──► ⑫ LangGraph 编排 ──► ⑬ MCP 工具
     │
-    └──────────► ⑭ 机器学习 ──► ⑮ 语音多模态 ──► ⑯ Agent 评测（质量闭环）──► ⑰ AutoGen 多 Agent ──► ⑱ Python Harness（生产质量护栏收官）
+    └──────────► ⑭ 机器学习 ──► ⑮ 语音多模态 ──► ⑯ Agent 评测（质量闭环）
+                                                        │
+                                                        ▼
+                    ⑰ AutoGen 多 Agent 编排 ──► ⑱ Python Harness ──► ⑳ Harness×多 Agent（收官）
+                         （会编排）                  （会测试）           （敢上线）
 ```
 
 ## 学习建议
