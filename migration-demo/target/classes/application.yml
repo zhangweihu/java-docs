@@ -1,0 +1,23 @@
+# 数据迁移实操项目配置（第 38 章配套）
+spring:
+  application:
+    name: migration-demo
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/migration_demo?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  flyway:
+    enabled: true                    # 开启 Flyway（默认 true）
+    locations: classpath:db/migration # 迁移脚本目录
+    baseline-on-migrate: true        # 存量库自动 baseline，避免"库中已有表"导致启动失败
+    baseline-version: 0              # baseline 版本：存量库会被标记为 0，之后从 V1 开始执行
+    validate-on-migrate: true        # 迁移前校验 checksum（生产强烈建议开启）
+    encoding: UTF-8
+
+logging:
+  level:
+    org.flywaydb: INFO
+    org.springframework.jdbc: INFO

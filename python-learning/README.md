@@ -4,7 +4,7 @@
 >
 > 定位：Java 负责高性能企业后端，Python 负责脚本自动化、数据分析、AI 与快速 Web 开发（FastAPI/Django）——两套体系互补。
 >
-> ✅ **9 章基础体系 + 11 章 AI/工程化扩展（LLM 基础 / Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness / Harness×多 Agent 协同）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
+> ✅ **9 章基础体系 + 12 章 AI/工程化扩展（LLM 基础 / Agent / RAG / 编排 / MCP / 机器学习 / 语音多模态 / 评测 / AutoGen / Harness / Harness×多 Agent 协同 / Skill×MCP）已全部发布**，从基础语法到 AI Agent 全栈再到生产质量护栏一条龙学完。
 
 ## 目录结构
 
@@ -29,7 +29,8 @@
 | 第十七章 | AutoGen 多 Agent 协作：三层架构 + AssistantAgent + Reflection 双 Agent 迭代 + RoundRobin/SelectorGroupChat 群聊调度 + FunctionTool/MCP 整合 + DiGraphBuilder 显式拓扑 + 人机协同 + Console 观测 + AutoGen vs LangGraph 选型 | [17-AutoGen多Agent协作.md](./17-AutoGen多Agent协作.md) | ✅ 已发布 |
 | 第十八章 | Python Harness 实战：测试 Harness 五大组件 + pytest fixture 全套（scope/嵌套/conftest）+ 参数化 + mock（pytest-mock/respx）+ 覆盖率（行/分支/增量）+ 变异测试（mutmut）+ 属性测试（Hypothesis）+ AI Agent Harness 工具调用断言 + LLM-as-Judge + 录制回放 + Langfuse 观测 + 成本延迟门禁 + AutoGen 项目 Harness 实战 + GitHub Actions CI | [18-PythonHarness实战.md](./18-PythonHarness实战.md) | ✅ 已发布 |
 | 第十九章 | LLM 基础与应用：语言模型与 Transformer 直觉、Token/上下文窗口、预训练与对齐、生成参数、Python 调用/流式/结构化输出、提示词、安全验证、模型选型与成本延迟、自研 LLM 技术栈与微调/训练路线、工单摘要实战 | [19-LLM基础与应用.md](./19-LLM基础与应用.md) | ✅ 已发布 |
-| 第二十章 | Harness 驱动的多 Agent 协同（全系列收官）：多 Agent 六大失效模式 + Harness 三层门禁（L1 单 Agent / L2 协同 / L3 端到端）+ 四种协作拓扑（流水线/主从/圆桌/移交 + 选型决策树）+ 多 Agent 编写五步法（拆解/角色/协议/编排/兜底）+ system prompt 四要素 + 手写最小多 Agent 框架（100 行）+ AutoGen 四专家代码评审系统 + 多 Agent 特有断言（路由/全员参与/不越界/不死循环/不爆炸）+ 成本门禁 + 调试技巧 | [20-Harness驱动的多Agent协同实战.md](./20-Harness驱动的多Agent协同实战.md) | ✅ 已发布 |
+| 第二十章 | Harness 驱动的多 Agent 协同：多 Agent 六大失效模式 + Harness 三层门禁（L1 单 Agent / L2 协同 / L3 端到端）+ 四种协作拓扑（流水线/主从/圆桌/移交 + 选型决策树）+ 多 Agent 编写五步法（拆解/角色/协议/编排/兜底）+ system prompt 四要素 + 手写最小多 Agent 框架（100 行）+ AutoGen 四专家代码评审系统 + 多 Agent 特有断言（路由/全员参与/不越界/不死循环/不爆炸）+ 成本门禁 + 调试技巧 | [20-Harness驱动的多Agent协同实战.md](./20-Harness驱动的多Agent协同实战.md) | ✅ 已发布 |
+| 第二十一章 | Agent Skill 与 MCP 协同实战：Skill 的定位、目录结构与任务流程编写 + Skill/MCP/Prompt/Function Calling 边界 + Skill 指导 MCP 工具调用 + Python 只读 CSV MCP 工具示例 + 安全与评测清单 | [21-Skill与MCP协同实战.md](./21-Skill与MCP协同实战.md) | ✅ 已发布 |
 
 ## 学习路线
 
@@ -49,13 +50,15 @@ AI 扩展（需前 9 章基础）──► ⑲ LLM 基础 ──► ⑩ Agent �
                          （会编排）                  （会测试）           （敢上线）
 ```
 
+扩展专题：第十三章学习 MCP 协议与接入后，可继续读第二十一章，了解如何用 Skill 组织任务流程并与 MCP 工具组合。
+
 ## 学习建议
 
 1. **先跑通第一章**：Python 语法量小但细节多（缩进、动态类型、推导式、装饰器），务必动手；
 2. **对照 Java 学**：把 Java 里熟悉的概念（List → list、HashMap → dict、Stream → 推导式、Lambda → lambda、注解+AOP → 装饰器）映射过去；
 3. **按需深入**：后端工程师优先学 3/4/5/6 章（脚本 + 服务）；数据分析方向优先 7 章；AI 工程师建议先读第 19 章建立 LLM 基础，再按需学习第 10~18 章（Agent 全栈 + Harness）；
 4. **实践出真知**：每章结尾的练习题 + 综合实战（如第一章学生成绩管理系统）必须独立完成；
-5. **多 Agent 与质量护栏是"上线前最后两公里"**：第 17 章学会编排复杂 Agent 协作，第 18 章学会为它装上"质量护栏"——这两章合起来是从 Demo 到生产的关键。
+5. **多 Agent 与质量护栏是"上线前最后两公里"**：第 17 章学会编排复杂 Agent 协作，第 18 章学会为它装上"质量护栏"；需要沉淀任务流程并复用外部能力时，再结合第 21 章学习 Skill 与 MCP。
 
 ## 配套环境
 
