@@ -13,6 +13,7 @@ docs/
 ├── csharp-learning/           # C# 体系化学习文档（README 索引 + 12 章：主线 9 章（环境->基础语法->面向对象->类型/模式匹配->集合/LINQ->错误调试->异步并发->.NET 类库->EF Core->ASP.NET Core Web）+ 高级专题 3 章（测试/质量/CI-Docker->CLR 底层/Span/unsafe/FFI->生态收官），零基础起步风格，每章含代码与实战）
 │   └── unity-learning/        # C# 游戏方向延伸专题（Unity 引擎：README + 7 章：主线 4 章（引擎与编辑器基础->脚本/生命周期/组件->物理/输入/UI->完整小游戏实战与发布）+ 进阶 3 章（uGUI/TMP 界面->动画 Animator->2D 精灵开发）+ demo-project 纯代码最小演示工程）
 ├── opengl-learning/           # OpenGL/C++ 图形学学习文档（README 索引 + 8 章：主线 5 章（渲染管线与环境->三角形与着色器->纹理->变换与坐标系统->摄像机自由漫游）+ 进阶 3 章（Phong 光照与材质->高级渲染特性->帧缓冲后处理与天空盒），章节内完整代码，无配套工程）
+├── ue-learning/               # Unreal Engine 5.x 引擎专题（README 索引 + 3 章：01 使用与编辑器指南 / 02 开发实战指南 / 03 开发技能树与知识点，分别对应"使用文档 / 开发文档 / 需要哪些技能"）
 ├── mall-boot/                 # Spring Boot 单体商城项目（可运行，配套第 31 章）
 ├── mall-cloud/                # Spring Cloud 微服务商城项目（配套第 30、32 章）
 ├── migration-demo/            # 数据迁移实操项目（Spring Boot + Flyway + MySQL，配套第 38 章）
@@ -102,6 +103,20 @@ Span/unsafe/指针/P-Invoke 本地互操作）、.NET 生态与收官（桌面/�
 进阶：第六章 Phong 光照模型与材质（环境/漫反射/高光、法线矩阵）→ 第七章 高级渲染特性（深度细节/面剔除/混合/模板描边/多重采样）→ 第八章 帧缓冲后处理与天空盒（离屏渲染/滤镜/天空盒反射）。
 一章一实战（清屏换色 → 彩色三角形/矩形 → 棋盘纹理矩形 → 自转 3D 立方体 → WASD+鼠标自由漫游 → 受光立方体 → 描边+半透明场景 → 反色/像素化后处理）。**只提供学习文档**，示例为章节内可复制的完整代码 + 第一章一次性工程模板，不附带可编译工程（写作时未实机编译，请在本地按章验证）。
 详见 [`opengl-learning/README.md`](./opengl-learning/README.md)。
+
+### 7. Unreal Engine 专题（ue-learning/）
+
+**商业级游戏引擎 / C++ 引擎层方向**，与 Unity（C# 引擎层）、OpenGL（图形底层）并列互补：面向已有任一语言编程经验、对 UE 零基础的读者，全程穿插 **UE vs Unity / Java / C#** 对照，**README 索引 + 3 章已全部完成**，三章分别对应用户最关心的三个问题：
+
+| 章节 | 回答的问题 | 主要内容 |
+| --- | --- | --- |
+| [01 使用与编辑器指南](./ue-learning/01-UE引擎使用与编辑器指南.md) | **使用文档**：怎么把引擎用起来 | 版本与许可、硬件与安装（Epic Launcher / VS2022）、项目创建与目录结构、Git LFS 配置、编辑器界面全解、视口导航与关卡编辑、Content Browser 资产管理与重定向器、材质编辑器与 Material Instance、蓝图入门、PIE 预览与 `stat` 命令、插件与 Fab、打包发布、常见报错速查 + 8 项实操验收 |
+| [02 开发实战指南](./ue-learning/02-UE引擎开发实战指南.md) | **开发文档**：怎么写引擎代码 | 模块与构建（Build.cs / Target.cs / UHT / UBT / generated.h 铁律）、UObject 反射与 GC（UPROPERTY 四重职责、`TObjectPtr`/弱引用/软引用）、核心类继承树、**Gameplay Framework 分工**（GameMode/GameState/PlayerState/Controller/Pawn）、生命周期与初始化顺序、UE 类型与容器、委托、C++↔蓝图互操作、Enhanced Input、碰撞与射线、定时器与异步加载、UMG、**网络复制与 RPC**、GAS / Nanite / Lumen / World Partition、调试性能（Insights / stat unit）、RunUAT 与自动化测试、完整 C++ 实战（射线交互 + 可复制拾取物 + GameState 计分 + UMG + 双客户端验收）、踩坑总表 + 8 道面试题 |
+| [03 开发技能树与知识点](./ue-learning/03-UE开发技能树与知识点.md) | **需要哪些技能**：要学什么、按什么顺序 | 9 类岗位分工与协作链、**四层技能树**（L1 基础 / L2 核心 / L3 进阶 / L4 专精）逐项标注必需·推荐·按需、C++ UE 实用子集、3D 数学与图形学清单、工具链全图、四条目标导向学习路线（Gameplay / 渲染 TA / 引擎工具 / 纯原型）、Java·C#·Unity·Python 迁移对照与三大翻车点、资源推荐、**70 分自检清单** + 面试题 |
+
+> 定位提示：UE 是「**C++ 方言 + 强约定框架 + 工业级资产/构建管线**」三合一，其中 Gameplay Framework 的分工约定最容易低估。配套阅读：[opengl-learning](./opengl-learning/README.md) 补 GPU 原理，[unity-learning](./csharp-learning/unity-learning/README.md) 对比引擎设计取舍。本专题只提供学习文档，不附带可编译工程（UE 工程含大量二进制资产）。
+
+详见 [`ue-learning/README.md`](./ue-learning/README.md)。
 
 ## 二、实战项目
 
